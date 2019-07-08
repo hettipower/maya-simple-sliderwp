@@ -1,0 +1,98 @@
+.ms_content_wrpper {
+    bottom: 18px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+.ms_content_wrpper {
+    bottom: 75px;
+    display: -webkit-box;
+  	display: -moz-box;
+  	display: -ms-flexbox;
+  	display: -webkit-flex;
+ 	display: flex; 
+    left: 0;
+    margin: auto;
+    padding: 0 10px;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+.ms_content_wrpper.center{
+    justify-content: center;
+}
+.ms_content_wrpper.right_side {
+    justify-content: flex-end;
+}
+.ms_content_wrpper.left_side {
+    justify-content: flex-start;
+}
+.ms_content {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px 15px;
+}
+#maya_simple_slider .bx-wrapper {
+    background-color: #c2c2c2;
+    border: medium none;
+    box-shadow: 0 0 0;
+    margin-bottom: 0;
+}
+.ms_slider_image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+#maya_simple_slider .bx-wrapper .bx-pager {
+    bottom: 0;
+    height: 30px;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+}
+#maya_simple_slider .bx-controls-auto {
+    bottom: 0;
+    position: absolute;
+    z-index: 100;
+}
+.mss_slider_wrapper.owl-theme .owl-nav {
+    margin: 0;
+}
+.mss_slider_wrapper.owl-theme .owl-nav > div {
+    position: absolute;
+    top: 50%;
+    margin: 0;
+    background-color: #000;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    opacity: 0.6;
+}
+.mss_slider_wrapper.owl-theme .owl-nav > div:hover , 
+.mss_slider_wrapper.owl-theme .owl-nav > div:focus {
+    background-color: #000;
+    opacity: 1;
+}
+.mss_slider_wrapper.owl-theme .owl-nav > div.owl-prev {
+    left: 10px;
+}
+.mss_slider_wrapper.owl-theme .owl-nav > div.owl-next {
+    right: 10px;
+}
+.mss_slider_wrapper.owl-theme .owl-dots {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+.mss_slider_wrapper.owl-carousel .owl-item img {
+    max-width: 100%;
+}

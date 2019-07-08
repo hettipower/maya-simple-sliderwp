@@ -1,0 +1,33 @@
+.clear{
+	clear: both;
+}
+.admin_option_wrapper , 
+.slider_opt {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 2px -1px #484848;
+    box-sizing: border-box;
+    padding: 5px 15px 15px;
+}
+.admin_option_wrapper hr {
+    margin: 20px 0;
+}
+.admin_option_wrapper table th {
+    min-width: 60%;
+}
+.admin_option_wrapper .button-primary {
+    float: right;
+}
+.wrap h2.ms_slider_title {
+    margin-bottom: 15px;
+}
+.admin_option_wrapper table th, .admin_option_wrapper table td {
+    padding-top: 0;
+}
+.slider_opt {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+}
+.slider_opt table {
+    margin: 0;
+}
