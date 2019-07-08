@@ -5,9 +5,8 @@ Plugin URI: http://www.mclanka.com
 Description:  Maya Simple Slider (slider for simple settings) <code>[ms_slider]</code>
 Version: 2.0
 Author: TharinduH
-Text Domain: maya-creations
+Text Domain: maya
 */
-
 
 register_activation_hook( __FILE__, 'plugin_activated' );
 
@@ -81,18 +80,14 @@ add_action( 'admin_enqueue_scripts', 'maya_sim_slider_admin_style' );
 //Custom Post Types
 require_once( 'inc/post_type/slider_type.php');
 
-//Librerys
-//require_once( 'inc/lib/metabox/init.php');
-
 //Shortcode
 require_once( 'inc/shortcode/slider_shortcode.php');
 
 //Admin
 //require_once( 'inc/admin/admin_option.php');
 
-function be_initialize_cmb_meta_boxes() {
-    if ( !class_exists( 'cmb_Meta_Box' ) ) {
-        require_once( 'inc/lib/metabox/init.php' );
-    }
+if ( file_exists( dirname( __FILE__ ) . '/inc/lib/cmb2/init.php' ) ) {
+	require_once dirname( __FILE__ ) . '/inc/lib/cmb2/init.php';
+} elseif ( file_exists( dirname( __FILE__ ) . '/inc/lib/CMB2/init.php' ) ) {
+	require_once dirname( __FILE__ ) . '/inc/lib/CMB2/init.php';
 }
-add_action( 'init', 'be_initialize_cmb_meta_boxes', 9999 );
