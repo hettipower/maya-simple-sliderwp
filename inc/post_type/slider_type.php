@@ -1,197 +1,92 @@
 <?php
-
-
-
-	
-
 // Register Custom Post Type
-
 function ms_slider_func() {
-
-
-
 	$labels = array(
-
-		'name'                  => _x( 'Sliders', 'Post Type General Name', 'wp-plugin' ),
-
-		'singular_name'         => _x( 'Slider', 'Post Type Singular Name', 'wp-plugin' ),
-
-		'menu_name'             => __( 'Slider', 'wp-plugin' ),
-
-		'name_admin_bar'        => __( 'Slider', 'wp-plugin' ),
-
-		'archives'              => __( 'Item Archives', 'wp-plugin' ),
-
-		'parent_item_colon'     => __( 'Parent Item:', 'wp-plugin' ),
-
-		'all_items'             => __( 'All Items', 'wp-plugin' ),
-
-		'add_new_item'          => __( 'Add New Item', 'wp-plugin' ),
-
-		'add_new'               => __( 'Add New', 'wp-plugin' ),
-
-		'new_item'              => __( 'New Item', 'wp-plugin' ),
-
-		'edit_item'             => __( 'Edit Item', 'wp-plugin' ),
-
-		'update_item'           => __( 'Update Item', 'wp-plugin' ),
-
-		'view_item'             => __( 'View Item', 'wp-plugin' ),
-
-		'search_items'          => __( 'Search Item', 'wp-plugin' ),
-
-		'not_found'             => __( 'Not found', 'wp-plugin' ),
-
-		'not_found_in_trash'    => __( 'Not found in Trash', 'wp-plugin' ),
-
-		'featured_image'        => __( 'Featured Image', 'wp-plugin' ),
-
-		'set_featured_image'    => __( 'Set featured image', 'wp-plugin' ),
-
-		'remove_featured_image' => __( 'Remove featured image', 'wp-plugin' ),
-
-		'use_featured_image'    => __( 'Use as featured image', 'wp-plugin' ),
-
-		'insert_into_item'      => __( 'Insert into item', 'wp-plugin' ),
-
-		'uploaded_to_this_item' => __( 'Uploaded to this item', 'wp-plugin' ),
-
-		'items_list'            => __( 'Items list', 'wp-plugin' ),
-
-		'items_list_navigation' => __( 'Items list navigation', 'wp-plugin' ),
-
-		'filter_items_list'     => __( 'Filter items list', 'wp-plugin' ),
-
+		'name'                  => _x( 'Sliders', 'Post Type General Name', 'maya' ),
+		'singular_name'         => _x( 'Slider', 'Post Type Singular Name', 'maya' ),
+		'menu_name'             => __( 'Slider', 'maya' ),
+		'name_admin_bar'        => __( 'Slider', 'maya' ),
+		'archives'              => __( 'Item Archives', 'maya' ),
+		'parent_item_colon'     => __( 'Parent Item:', 'maya' ),
+		'all_items'             => __( 'All Items', 'maya' ),
+		'add_new_item'          => __( 'Add New Item', 'maya' ),
+		'add_new'               => __( 'Add New', 'maya' ),
+		'new_item'              => __( 'New Item', 'maya' ),
+		'edit_item'             => __( 'Edit Item', 'maya' ),
+		'update_item'           => __( 'Update Item', 'maya' ),
+		'view_item'             => __( 'View Item', 'maya' ),
+		'search_items'          => __( 'Search Item', 'maya' ),
+		'not_found'             => __( 'Not found', 'maya' ),
+		'not_found_in_trash'    => __( 'Not found in Trash', 'maya' ),
+		'featured_image'        => __( 'Featured Image', 'maya' ),
+		'set_featured_image'    => __( 'Set featured image', 'maya' ),
+		'remove_featured_image' => __( 'Remove featured image', 'maya' ),
+		'use_featured_image'    => __( 'Use as featured image', 'maya' ),
+		'insert_into_item'      => __( 'Insert into item', 'maya' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this item', 'maya' ),
+		'items_list'            => __( 'Items list', 'maya' ),
+		'items_list_navigation' => __( 'Items list navigation', 'maya' ),
+		'filter_items_list'     => __( 'Filter items list', 'maya' ),
 	);
-
 	$args = array(
-
-		'label'                 => __( 'Slider', 'wp-plugin' ),
-
-		'description'           => __( 'Slider', 'wp-plugin' ),
-
+		'label'                 => __( 'Slider', 'maya' ),
+		'description'           => __( 'Slider', 'maya' ),
 		'labels'                => $labels,
-
 		'supports'              => array( 'title', 'editor' ),
-
 		'hierarchical'          => false,
-
 		'public'                => true,
-
 		'show_ui'               => true,
-
 		'show_in_menu'          => true,
-
 		'menu_position'         => 5,
-
 		'menu_icon'             => 'dashicons-format-gallery',
-
 		'show_in_admin_bar'     => true,
-
 		'show_in_nav_menus'     => true,
-
 		'can_export'            => true,
-
-		'has_archive'           => true,		
-
+		'has_archive'           => true,
 		'exclude_from_search'   => true,
-
 		'publicly_queryable'    => true,
-
 		'capability_type'       => 'post',
-
 	);
-
 	register_post_type( 'ms-slider', $args );
-
-
-
 }
-
 add_action( 'init', 'ms_slider_func', 0 );
 
-
-
-function ms_slider_type_metaboxes( $meta_boxes ) {
+add_action( 'cmb2_admin_init', 'ms_slider_metaboxes' );
+function ms_slider_metaboxes() {
 
 	$prefix = 'mss_cmb_'; // Prefix for all fields
+	/**
+	 * Initiate the metabox
+	 */
+	$cmb = new_cmb2_box( array(
+		'id'            => 'ms_slider_type_content',
+		'title'         => __( 'Slider Content', 'maya' ),
+		'object_types'  => array( 'ms-slider', ), // Post type
+		'context'       => 'normal',
+		'priority'      => 'high',
+		'show_names'    => true, // Show field names on the left
+		// 'cmb_styles' => false, // false to disable the CMB stylesheet
+		// 'closed'     => true, // Keep the metabox closed by default
+	) );
 
-	$meta_boxes['ms_slider_type_content'] = array(
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Slider Image', 'maya' ),
+		'desc' => esc_html__( 'Upload an image or enter a URL.', 'maya' ),
+		'id' => $prefix . 'slider_image',
+		'type' => 'file',
+	) );
 
-    	'id' => 'ms_slider_type_content',
-
-	    'title' => 'Slider Content',
-
-	    'pages' => array('ms-slider'), 
-
-		'context' => 'normal',
-
-		'priority' => 'high',
-
-		'show_names' => true, 
-
-		'fields' => array(
-
-			array(
-
-			    'name' => 'Slider Image',
-
-			    'desc' => 'Upload an image.',
-
-			    'id' => $prefix . 'slider_image',
-
-			    'type' => 'file',
-
-			    'allow' => array( 'url', 'attachment' ) // limit to just attachments with array( 'attachment' )
-
-			),
-
-			/*array(
-
-			    'name' => 'Slider Video',
-
-			    'desc' => 'Upload a video.',
-
-			    'id' => $prefix . 'slider_video',
-
-			    'type' => 'file',
-
-			    'allow' => array( 'attachment' ) // limit to just attachments with array( 'attachment' )
-
-			),*/
-
-			array(
-
-			    'name'    => 'Slider Content Position',
-
-			    'desc'    => 'Select Position',
-
-			    'id'      => $prefix . 'content_position',
-
-			    'type'    => 'select',
-
-			    'options' => array(
-
-			        'left_side' => __( 'Left', 'cmb2' ),
-
-			        'right_side'   => __( 'Right', 'cmb2' ),
-
-			        'center'     => __( 'Center', 'cmb2' ),
-
-			    ),
-
-			    'default' => 'custom',
-
-			),
-
+	$cmb->add_field( array(
+		'name'             => esc_html__( 'Slider Content Position', 'maya' ),
+		'desc'             => esc_html__( 'Select Position', 'maya' ),
+		'id'               => $prefix . 'content_position',
+		'type'             => 'select',
+		'show_option_none' => true,
+		'options'          => array(
+			'left_side' => esc_html__( ' Left', 'maya' ),
+			'right_side'   => esc_html__( 'Right', 'maya' ),
+			'center'     => esc_html__( 'Center', 'maya' ),
 		),
-
-	);
-
-	
-
-	return $meta_boxes;
+	) );
 
 }
-
-add_filter( 'cmb_meta_boxes' , 'ms_slider_type_metaboxes' );
