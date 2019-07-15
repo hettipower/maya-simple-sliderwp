@@ -77,6 +77,13 @@ function ms_slider_metaboxes() {
 	) );
 
 	$cmb->add_field( array(
+		'name' => esc_html__( 'Slider Image (Mobile)', 'maya' ),
+		'desc' => esc_html__( 'Upload an image or enter a URL.', 'maya' ),
+		'id' => $prefix . 'slider_image_mobile',
+		'type' => 'file',
+	) );
+
+	$cmb->add_field( array(
 		'name'             => esc_html__( 'Slider Content Position', 'maya' ),
 		'desc'             => esc_html__( 'Select Position', 'maya' ),
 		'id'               => $prefix . 'content_position',
