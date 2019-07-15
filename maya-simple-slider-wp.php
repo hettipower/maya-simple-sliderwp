@@ -8,9 +8,19 @@ Author: TharinduH
 Text Domain: maya
 */
 
-//register_activation_hook( __FILE__, 'plugin_activated' );
+register_activation_hook( __FILE__, 'plugin_activated' );
 function plugin_activated(){
-	$optPre = '_ms_opt_';
+	$mayaSliderSettOpt = array(
+		'loop' => 'true',
+		'mouse_drag' => 'true',
+		'touch_drag' => 'true',
+		'navigation' => 'true',
+		'dots' => 'true',
+		'autoplay' => 'true',
+		'autoplay_timeout' => '5000',
+		'autoplay_hover_pause' => 'false',
+	);
+	update_option( 'maya_slider_settings', $mayaSliderSettOpt );
 }
 
 /********************************************************************************************/
@@ -29,9 +39,14 @@ function maya_sim_slider_front_styles() {
 add_action('wp_print_styles', 'maya_sim_slider_front_styles'); 
 
 function maya_sim_slider_front_scripts() {
+	$mayaSliderSettOpt = get_option( 'maya_slider_settings' );
     wp_enqueue_script('jquery');
-    wp_enqueue_script('mss-js',MSS_URL_JS.'/mss.js', array('jquery'),'1.0',true);
 	wp_enqueue_script('OwlCarousel2-js','https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js', array('jquery'),'1.0',true);
+	wp_enqueue_script('mss-js',MSS_URL_JS.'/mss.js', array('jquery'),'1.0',true);
+	$mssParams = array(
+		'slider_settings' => $mayaSliderSettOpt,
+	);
+	wp_localize_script( 'mss-js', 'MSS_PARAM', $mssParams );
 }
 add_action('wp_print_scripts', 'maya_sim_slider_front_scripts');
 
@@ -52,8 +67,10 @@ require_once( 'inc/post_type/slider_type.php');
 //Shortcode
 require_once( 'inc/shortcode/slider_shortcode.php');
 
-//Libraries
+//Admin Options
+require_once( 'inc/admin_opt.php');
 
+//Libraries
 //CMB2
 if ( file_exists( dirname( __FILE__ ) . '/inc/lib/cmb2/init.php' ) ) {
 	require_once dirname( __FILE__ ) . '/inc/lib/cmb2/init.php';
