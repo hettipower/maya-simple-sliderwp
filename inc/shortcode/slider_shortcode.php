@@ -10,6 +10,7 @@ add_shortcode('ms_slider', 'ms_slider_shortcode');
 // Today News Fields
 function ms_slider_fields() {
 
+	$detect = new Mobile_Detect;
 	$prefix = 'mss_cmb_';	
 	$the_query = new WP_Query( array(
 		'post_type' => 'ms-slider',
@@ -23,11 +24,21 @@ function ms_slider_fields() {
 				<div <?php post_class('ms_slider item'); ?>>
 					<?php
 						$image = wp_get_attachment_url( get_post_meta( get_the_ID(), $prefix.'slider_image_id', 1 ), 'full' );
+						$Mobileimage = wp_get_attachment_url( get_post_meta( get_the_ID(), $prefix.'slider_image_mobile_id', 1 ), 'full' );
 						$text_position = get_post_meta( get_the_ID(), $prefix.'content_position', true );
 						$content = get_the_content();
-						if( $image ){
-							echo '<img id="mss_img_'.get_the_ID().'" src="'.$image.'" />';
-						} 
+						if( $detect->isMobile() ){
+							if( $Mobileimage ){
+								echo '<img id="mss_img_'.get_the_ID().'" src="'.$Mobileimage.'" />';
+							}elseif( $image ){
+								echo '<img id="mss_img_'.get_the_ID().'" src="'.$image.'" />';
+							}
+						}else{
+							if( $image ){
+								echo '<img id="mss_img_'.get_the_ID().'" src="'.$image.'" />';
+							}
+						}
+						 
 					?>	
 					<?php if( $content ){ ?>
 						<div class="ms_content_wrpper <?php echo $text_position; ?>">
