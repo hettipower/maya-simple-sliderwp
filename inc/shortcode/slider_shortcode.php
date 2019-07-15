@@ -11,6 +11,7 @@ add_shortcode('ms_slider', 'ms_slider_shortcode');
 function ms_slider_fields() {
 
 	$detect = new Mobile_Detect;
+	$mayaSliderSettOpt = get_option( 'maya_slider_settings' );
 	$prefix = 'mss_cmb_';	
 	$the_query = new WP_Query( array(
 		'post_type' => 'ms-slider',
