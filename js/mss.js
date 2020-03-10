@@ -1,7 +1,6 @@
 jQuery(document).ready(function($) {
 
 	let sliderOptions = MSS_PARAM.slider_settings;
-	console.log(sliderOptions);
 
 	$('.mss_slider_wrapper').owlCarousel({
 	    loop:sliderOptions.loop,

@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Maya Simple Slider Wordpress
-Plugin URI: http://www.mclanka.com
+Plugin URI: https://www.maya.lk
 Description:  Maya Simple Slider (slider for simple settings) <code>[ms_slider]</code>
 Version: 2.0
 Author: TharinduH

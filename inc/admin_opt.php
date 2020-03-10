@@ -125,26 +125,38 @@ class MayaSliderSettings {
 		$sanitary_values = array();
 		if ( isset( $input['loop'] ) ) {
 			$sanitary_values['loop'] = $input['loop'];
+		}else{
+			$sanitary_values['loop'] = false;
 		}
 
 		if ( isset( $input['mouse_drag'] ) ) {
 			$sanitary_values['mouse_drag'] = $input['mouse_drag'];
+		}else {
+			$sanitary_values['mouse_drag'] = false;
 		}
 
 		if ( isset( $input['touch_drag'] ) ) {
 			$sanitary_values['touch_drag'] = $input['touch_drag'];
+		}else{
+			$sanitary_values['touch_drag'] = false;
 		}
 
 		if ( isset( $input['navigation'] ) ) {
 			$sanitary_values['navigation'] = $input['navigation'];
+		}else{
+			$sanitary_values['navigation'] = false;
 		}
 
 		if ( isset( $input['dots'] ) ) {
 			$sanitary_values['dots'] = $input['dots'];
+		}else {
+			$sanitary_values['dots'] = false;
 		}
 
 		if ( isset( $input['autoplay'] ) ) {
 			$sanitary_values['autoplay'] = $input['autoplay'];
+		} else {
+			$sanitary_values['autoplay'] = false;
 		}
 
 		if ( isset( $input['autoplay_timeout'] ) ) {
@@ -153,6 +165,8 @@ class MayaSliderSettings {
 
 		if ( isset( $input['autoplay_hover_pause'] ) ) {
 			$sanitary_values['autoplay_hover_pause'] = $input['autoplay_hover_pause'];
+		}else {
+			$sanitary_values['autoplay_hover_pause'] = false;
 		}
 
 		return $sanitary_values;
